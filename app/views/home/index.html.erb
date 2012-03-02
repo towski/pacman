@@ -1,0 +1,22 @@
+<table>
+<%- @users.each do |user| -%>
+<tr>
+  <td> <%= user.name %> </td>
+  <td> <%= user.matches_won_count %></td>
+</tr>
+<%- end -%>
+</table>
+
+<table>
+<%- @teams.each do |team| -%>
+<tr>
+  <td> <%= team.name %> </td>
+  <td> <%= team.matches_won_count %></td>
+</tr>
+<%- end -%>
+</table>
+
+<br/>
+
+<%= link_to 'New user', new_user_path %>
+<%= link_to 'New match', new_match_path %>

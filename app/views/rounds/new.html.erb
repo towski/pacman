@@ -1,0 +1,10 @@
+<%- form_for @round, :url => match_rounds_path(@match) do |form| -%>
+  <%- if @match.team? -%>
+    Who won? <%= form.select "winning_team_id", options_for_select([nil] + @match.teams.map{|t| [t.name, t.id] }) %>
+    
+  <%- else -%>
+    Who won? <%= form.select "winning_user_name", options_for_select([nil] + @match.users.map(&:name)) %>
+  <%- end -%>
+  
+  <%= form.submit %>
+<%- end -%>

@@ -1,0 +1,22 @@
+<%- form_for @match do |form| -%>
+  Pink Player:
+  <%= select_tag "users[]", options_for_select([nil] + @users.map(&:name)) %>
+  
+  Yellow Player:
+  <%= select_tag "users[]", options_for_select([nil] + @users.map(&:name)) %>
+  
+  <br/>
+  
+  Blue Player:
+  <%= select_tag "users[]", options_for_select([nil] + @users.map(&:name)) %>
+  
+  Red Player:
+  <%= select_tag "users[]", options_for_select([nil] + @users.map(&:name)) %>
+  
+  <br/>
+  <%= form.select :number_of_rounds, options_for_select([5,7]) %>
+
+  <%= form.check_box :team %>
+  
+  <%= form.submit %>
+<%- end -%>
