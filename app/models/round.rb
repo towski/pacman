@@ -23,7 +23,9 @@ class Round < ActiveRecord::Base
             highest_team = team
           end
         end
-        match.winning_team = highest_team
+        if highest_score != 2
+          match.winning_team = highest_team
+        end
       else
         match.rounds.each do |round|
           results[round.winning_user] ||= 0
