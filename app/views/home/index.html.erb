@@ -1,42 +1,55 @@
-<h3>Recently Added Games</h3>
-<table>
-<%- @matches.each do |match| -%>
-<tr>
-  <%- if match.team? -%>
-    <td> <%= match.teams.map{|team| match.winning_team_id == team.id ? "<strong>#{team.name}</strong>" : team.name }.join(" ") %> </td>
-  <%- else -%>
-    <td> <%= match.users.map{|user| match.winning_user_id == user.id ? "<strong>#{user.name}</strong>" : user.name }.join(" ") %> </td>
+<table width='100%'>
+  <tr>
+    <td>
+  <h3>Recently Added Games</h3>
+  <table>
+  <%- @matches.each do |match| -%>
+  <tr>
+    <%- if match.team? -%>
+      <td> <%= match.teams.map{|team| match.winning_team_id == team.id ? "<strong>#{team.name}</strong>" : team.name }.join(" ") %> </td>
+    <%- else -%>
+      <td> <%= match.users.map{|user| match.winning_user_id == user.id ? "<strong>#{user.name}</strong>" : user.name }.join(" ") %> </td>
+    <%- end -%>
+    
+    <td> <%= time_ago_in_words match.created_at %> ago</td>
+  </tr>
   <%- end -%>
+  </table>
+</td>
+<td>
   
-  <td> <%= time_ago_in_words match.created_at %> ago</td>
+  <%= link_to 'New user', new_user_path %>
+  <%= link_to 'New match', new_match_path %>
+  
+</td>
 </tr>
-<%- end -%>
-</table>
-
-
-<h3>Team Scores</h3>
-<table>
-<%- @teams.each do |team| -%>
 <tr>
-  <td> <%= team.name %> </td>
-  <td> <%= team.matches_won_count %></td>
-  <td> / <%= team.matches.completed.count %></td>
+  <td>
+  <h3>Team Scores</h3>
+  <table>
+  <%- @teams.each do |team| -%>
+  <tr>
+    <td> <%= team.name %> </td>
+    <td> <%= team.matches_won_count %></td>
+    <td> / <%= team.matches.completed.count %></td>
+  </tr>
+  <%- end -%>
+  </table>
+</td>
+<td>
+  
+  <h3>FFA Scores</h3>
+  <table>
+  <%- @users.each do |user| -%>
+  <tr>
+    <td> <%= user.name %> </td>
+    <td> <%= user.matches_won_count %></td>
+    <td> / <%= user.matches.completed.count %></td>
+  </tr>
+  <%- end -%>
+  </table>
+</td>
 </tr>
-<%- end -%>
 </table>
-
-<h3>FFA Scores</h3>
-<table>
-<%- @users.each do |user| -%>
-<tr>
-  <td> <%= user.name %> </td>
-  <td> <%= user.matches_won_count %></td>
-  <td> / <%= user.matches.completed.count %></td>
-</tr>
-<%- end -%>
-</table>
-
 <br/>
 
-<%= link_to 'New user', new_user_path %>
-<%= link_to 'New match', new_match_path %>
