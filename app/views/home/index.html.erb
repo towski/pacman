@@ -20,6 +20,7 @@
 <tr>
   <td> <%= team.name %> </td>
   <td> <%= team.matches_won_count %></td>
+  <td> / <%= team.matches.completed.count %></td>
 </tr>
 <%- end -%>
 </table>
@@ -30,6 +31,7 @@
 <tr>
   <td> <%= user.name %> </td>
   <td> <%= user.matches_won_count %></td>
+  <td> <%= user.matches.completed.count %></td>
 </tr>
 <%- end -%>
 </table>
