@@ -3,7 +3,7 @@
 <%- @matches.each do |match| -%>
 <tr>
   <td> <%= time_ago_in_words match.created_at %></td>
-  <%- match.team? -%>
+  <%- if match.team? -%>
     <td> <%= match.teams.map{|team| match.winning_team_id == team.id ? "<strong>#{team.name}</strong>" : team.name }.join(" ") %> </td>
   <%- else -%>
     <td> <%= match.users.map{|user| match.winning_user_id == user.id ? "<strong>#{user.name}</strong>" : user.name }.join(" ") %> </td>
