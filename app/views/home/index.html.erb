@@ -14,22 +14,22 @@
 </table>
 
 
-<h3>Users</h3>
-<table>
-<%- @users.each do |user| -%>
-<tr>
-  <td> <%= user.name %> </td>
-  <td> <%= user.matches_won_count %></td>
-</tr>
-<%- end -%>
-</table>
-
-<h3>Teams</h3>
+<h3>Team Scores</h3>
 <table>
 <%- @teams.each do |team| -%>
 <tr>
   <td> <%= team.name %> </td>
   <td> <%= team.matches_won_count %></td>
+</tr>
+<%- end -%>
+</table>
+
+<h3>FFA Scores</h3>
+<table>
+<%- @users.each do |user| -%>
+<tr>
+  <td> <%= user.name %> </td>
+  <td> <%= user.matches_won_count %></td>
 </tr>
 <%- end -%>
 </table>
