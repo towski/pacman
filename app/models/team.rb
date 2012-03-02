@@ -7,7 +7,20 @@ class Team < ActiveRecord::Base
     users = User.find_all_by_name user_names
     old_team_users = TeamUser.all(:conditions => {:user_id => users.map(&:id)})
     if !old_team_users.empty?
-      old_team_users.first.team
+      old_team_users.map!(&:team_id)
+      team_ids = {}
+      old_team_users.each do |old_team_id|
+        team_ids[old_team_id] ||= 0
+        team_ids[old_team_id] += 1
+      end
+      correct_team = nil
+      team_ids.each do |team_id, count|
+        if count > 1
+          correct_team = Team.find(team_id)
+          break
+        end
+      end
+      correct_team
     else
       nil
     end
