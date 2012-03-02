@@ -1,4 +1,19 @@
-<h1>Users</h1>
+<h3>Recent Games</h3>
+<table>
+<%- @matches.each do |match| -%>
+<tr>
+  <td> <%= time_ago_in_words match.created_at %></td>
+  <%- match.team? -%>
+    <td> <%= match.teams.map{|team| match.winning_team_id == team.id ? "<strong>#{team.name}</strong>" : team.name }.join(" ") %> </td>
+  <%- else -%>
+    <td> <%= match.users.map{|user| match.winning_user_id == user.id ? "<strong>#{user.name}</strong>" : user.name }.join(" ") %> </td>
+  <%- end -%>
+</tr>
+<%- end -%>
+</table>
+
+
+<h3>Users</h3>
 <table>
 <%- @users.each do |user| -%>
 <tr>
@@ -8,7 +23,7 @@
 <%- end -%>
 </table>
 
-<h1>Teams</h1>
+<h3>Teams</h3>
 <table>
 <%- @teams.each do |team| -%>
 <tr>
