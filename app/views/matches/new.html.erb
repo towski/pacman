@@ -1,18 +1,26 @@
 <%- form_for @match do |form| -%>
-  Pink Player:
+  <table width='100%'>
+    <tr height='100px'>
+      <td width='50%'>
+  <span style='color:pink'>Pink Player</span>
   <%= select_tag "users[]", options_for_select([nil] + @users.map(&:name)) %>
-  
-  Yellow Player:
+</td>
+<td width='50%'>
+  <span style='color:yellow;'>Yellow Player</span>
   <%= select_tag "users[]", options_for_select([nil] + @users.map(&:name)) %>
-  
-  <br/>
-  
-  Blue Player:
+</td>
+</tr>
+<tr height='100px'>
+  <td width='50%'>
+  <span style='color:blue'>Blue Player</span>
   <%= select_tag "users[]", options_for_select([nil] + @users.map(&:name)) %>
-  
-  Red Player:
+</td>
+<td width='50%'>
+  <span style='color:red'>Red Player</span>
   <%= select_tag "users[]", options_for_select([nil] + @users.map(&:name)) %>
-  
+</td>
+</tr>
+</table>
   <br/>
   Number of rounds <%= form.select :number_of_rounds, options_for_select([5,7]) %>
 
