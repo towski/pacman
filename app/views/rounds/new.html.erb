@@ -1,10 +1,13 @@
 <%- form_for @round, :url => match_rounds_path(@match) do |form| -%>
-  <%- if @match.team? -%>
-    Who won? <%= form.select "winning_team_id", options_for_select([nil] + @match.teams.map{|t| [t.name, t.id] }) %>
-    
-  <%- else -%>
-    Who won? <%= form.select "winning_user_name", options_for_select([nil] + @match.users.map(&:name)) %>
+  <%- @match.number_of_rounds.times do |i|  -%>
+  <div style='height:60px'>
+    Round <%=  i + 1 %>:
+    <%- if @match.team? -%>
+      Who won? <%= select_tag "winning_team_ids[]", options_for_select([nil] + @match.teams.map{|t| [t.name, t.id] }) %>
+    <%- else -%>
+      Who won? <%= select_tag "winning_user_names[]", options_for_select([nil] + @match.users.map(&:name)) %>
+    <%- end -%>
+  </div>
   <%- end -%>
-  
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= form.submit %>
 <%- end -%>
